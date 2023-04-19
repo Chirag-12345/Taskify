@@ -1,0 +1,107 @@
+* {
+  padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.Heading {
+  display: flex;
+  justify-content: space-around;
+  background-color: #0A4D68;
+  padding: 10px;
+  color: #00FFCA;
+  }
+
+.icon {
+  padding: 5px;
+  margin-top: 10px;
+}
+
+.Content {
+  display: grid;
+  grid-template-columns: 22% 78%;
+}
+
+.Groups-container {
+  height: 96vh;
+  background-color: #088395;
+}
+
+.Group-item {
+  font-size: 30px;
+  padding: 5px;
+  
+}
+
+.list-container {
+  background-color: #05BFDB;
+}
+
+.list-item {
+  display: flex;
+  justify-content: space-between;
+  font-size: 25px;
+  border: 1px solid;
+}
+
+input {
+  display: block;
+}
+.FillBox {
+  position: absolute;
+  top: 25%;
+  left: 12.5%;
+  size: 50px;
+  height: 50vh;
+  width: 75vw;
+  background-color: #635985;
+}
+.Home {
+  color: #6A2C70
+}
+
+.Work {
+  color: #6A2C70
+}
+
+.Hobby {
+  color: #6A2C70
+}
+
+#Task {
+  margin: 2vw;
+  height: 40%;
+  width: 71vw;
+}
+
+.Select-Group {
+  display: flex;
+  justify-content: space-around;
+}
+
+.Select-Group > button {
+  font-size: 25px;
+  padding: 2%;
+  border-radius: 8%;
+}
+
+#submit_btn {
+  width: 96%;
+  margin: 2%;
+  padding: 1%;
+  border-radius: 9%;
+  font-size: 26px;
+}
+
+.selected_bttn {
+  background-color: #443C68;
+}
+
+.active_group {
+  border: 1px solid;
+  color: #00FFCA;
+}
