@@ -71,7 +71,7 @@ function save_bttn() {
   if(ticketInfoObject.ticketValue=="")
   {alert("Task can't be Empty");}
   else{
-  save_to_DB(ticketInfoObject); }// To save into actual database
+  save_to_DB(ticketInfoObject); ClosBtn.click();}// To save into actual database
   // To close the box
   ClosBtn.click();
 }
