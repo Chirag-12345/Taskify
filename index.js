@@ -23,7 +23,7 @@ function openBox() {
   //Working for creation of Div
   let FillBox = document.createElement("div");
   FillBox.innerHTML = `
-    <input type="text" placeholder="Enter The Task Here" id="Task">
+    <input type="text" placeholder="Enter The Task Here" id="Task" autocomplete="off">
     <div class="Select-Group">
     <button class="Home1">🏠 Home</button>
     <button class="Work1">💼 Work</button>
@@ -71,7 +71,7 @@ function save_bttn() {
   if(ticketInfoObject.ticketValue=="")
   {alert("Task can't be Empty");}
   else{
-  save_to_DB(ticketInfoObject); ClosBtn.click();}// To save into actual database
+  save_to_DB(ticketInfoObject); }// To save into actual database
   // To close the box
   ClosBtn.click();
 }
