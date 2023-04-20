@@ -79,11 +79,13 @@ function save_bttn() {
 // To save to local database
 function save_to_DB(ticketInfoObject) {
   let allTasks = myDB.getItem("allTasks");
+  if(allTasks){
   if (allTasks != "undefined") {
     allTasks = JSON.parse(allTasks);
     allTasks.push(ticketInfoObject);
     myDB.setItem("allTasks", JSON.stringify(allTasks));
-  } else {
+  } }
+  else {
     let allTasks = [ticketInfoObject];
     myDB.setItem("allTasks", JSON.stringify(allTasks));
   }
@@ -139,7 +141,7 @@ function InsertList(ticketInfoObject) {
                     ${ticketValue}
                     <div>
                         <i class="fa-solid fa-pen-to-square"></i>
-                        <i class="fa-solid fa-trash"></i>
+                          <i class="fa-solid fa-trash"></i>
                     
                     </div>
     `;
