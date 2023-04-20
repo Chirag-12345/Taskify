@@ -23,7 +23,7 @@ function openBox() {
   //Working for creation of Div
   let FillBox = document.createElement("div");
   FillBox.innerHTML = `
-    <input type="text" placeholder="Enter The Task Here" id="Task" autocomplete="off">
+    <textarea placeholder="Enter The Task Here" id="Task" autocomplete="off"></textarea>
     <div class="Select-Group">
     <button class="Home1">🏠 Home</button>
     <button class="Work1">💼 Work</button>
