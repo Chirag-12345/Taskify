@@ -20,7 +20,7 @@ for (let i = 0; i < document.getElementsByClassName("Group-item").length; i++) {
 }
 
 function openBox() {
-  //Working for creation of Div
+  //Working for Div used for creation of task
   let FillBox = document.createElement("div");
   FillBox.innerHTML = `
     <textarea placeholder="Enter The Task Here" id="Task" autocomplete="off"></textarea>
@@ -130,6 +130,7 @@ function displayList(e) {
     alert("There is no pending task");
   }
   DeletionList();
+  EditList();
 }
 
 // Function to insert the list item in viewport
@@ -161,9 +162,7 @@ function DeletionList() {
       let grp1 = grp;
       grp = grp + "1";
       let upDatedTasks = [];
-      console.log(allTasks);
       for (let j = 0; j < allTasks.length; j++) {
-        console.log(allTasks[j]);
         if (allTasks[j].ticketFilter == grp) {
           if (k == 0) {
             k--;
@@ -183,4 +182,100 @@ function DeletionList() {
       displayList(grp1);
     });
   }
+}
+
+function EditList(){
+  let arr = document.querySelectorAll(".fa-pen-to-square");
+  for (let i = 0; i < arr.length; i++){
+    arr[i].addEventListener("click",function(){
+      let k=i;
+      let allTasks = localStorage.getItem("allTasks");
+      let grp = document.querySelector(".active_group").classList[1];
+      allTasks = JSON.parse(allTasks);
+      grp = grp+'1';
+      console.log(allTasks);
+
+      let current_task;
+      let ticketId;
+      for (let j = 0; j < allTasks.length; j++) {
+        if (allTasks[j].ticketFilter == grp) {
+          if (k == 0) {current_task=allTasks[j].ticketValue;ticketId=allTasks[j].ticketId;break; } 
+          else {k--;}
+        } 
+        else {continue;}
+      }
+
+      upDateBox(current_task,grp,ticketId,allTasks);
+      updatelist(grp);
+    });
+  }
+}
+
+function upDateBox(current_task,grp,ticketId,allTasks){
+  let FillBox = document.createElement("div");
+  FillBox.innerHTML = `
+    <textarea placeholder="Enter The Task Here" id="Task" autocomplete="off">${current_task}</textarea>
+    <div class="Select-Group">
+    <button class="Home1">🏠 Home</button>
+    <button class="Work1">💼 Work</button>
+    <button class="Hobby1">📚Hobby</button>
+    </div>
+    <button type="submit" id="submit_btn">Submit</button>
+    `;
+  FillBox.classList.add("FillBox");
+  document.querySelector("body").append(FillBox);
+
+  // To mark current category of Task
+  document.querySelector("."+grp).classList.add("selected_bttn");
+
+  // Working for selection of filter during FillBox
+  let arr_btn = document.querySelectorAll("button");
+  for (let i = 0; i < 3; i++) {
+    let j = i;
+    arr_btn[j].addEventListener("click", function (e) {
+      if (e.target.classList.contains("selected_bttn")) return;
+      else if (document.querySelectorAll(".selected_bttn").length === 0) {
+        e.target.classList.add("selected_bttn");
+      } else {
+        document
+          .querySelector(".selected_bttn")
+          .classList.remove("selected_bttn");
+        e.target.classList.add("selected_bttn");
+      }
+    });
+  }
+
+   //Added Event listener to save button
+   let save_btn = document.querySelector("#submit_btn");
+   save_btn.addEventListener("click", function () {
+     let e = document.querySelector(".selected_bttn").classList[0];
+    if(e==grp)
+    {
+      for(let i=0;i<allTasks.length;i++)
+      {
+        if(allTasks[i].ticketId==ticketId)
+        {allTasks[i].ticketValue=document.querySelector("#Task").value;break;}
+      }
+      myDB.setItem("allTasks", JSON.stringify(allTasks));
+      updatelist(grp);
+      ClosBtn.click();
+    }
+    else{
+      let upDatedTasks = [];
+      for(let i=0;i<allTasks.length;i++)
+      {
+        if(allTasks[i].ticketId!=ticketId)
+        {upDatedTasks.push(allTasks[i]);}
+      }
+      let ticketInfoObject = {
+    ticketFilter: document.querySelector(".selected_bttn").classList[0],
+    ticketValue: document.querySelector("#Task").value,
+    ticketId: ticketId,
+  };
+  upDatedTasks.push(ticketInfoObject);
+  myDB.setItem("allTasks", JSON.stringify(upDatedTasks));
+  updatelist(grp);
+      ClosBtn.click();
+    }
+   });
 }
