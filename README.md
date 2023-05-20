@@ -7,11 +7,11 @@ Current Features of App:
 3. User can view also task in 3 categories.
 4. User can store their task list in windows local storage.
 5. User can delete their task after completion of Task.
+6. User can modify/edit the previous task.
 
 Future features to include in App are:
 1. It will be linked with MongoDB Database.
-2. User will be able to modify/edit the previous task.
-3. User will be able to insert deadline of their task.
-4. User can view their their today tasks on basis of Todays date.
-5. Use can sort tasks on basis of deadline dates
-6. User will be able to create new groups on their own according to their need.
+2. User will be able to insert deadline of their task.
+3. User can view their their today tasks on basis of Todays date.
+4. Use can sort tasks on basis of deadline dates
+5. User will be able to create new groups on their own according to their need.
